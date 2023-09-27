@@ -11,7 +11,7 @@ function calculateFaceMove(e) {
 		caretCoords = {}
 	;
 	if(carPos == null || carPos == 0) {
-		// if browser doesn't support 'selectionEnd' property on input[type="email"], use 'value.length' property instead
+
 		carPos = email.value.length;
 	}
 	[].forEach.call(copyStyle, function(prop){
@@ -148,12 +148,12 @@ function onEmailLabelClick(e) {
 
 function onPasswordToggleChange(e) {
 	setTimeout(function() {
-		// if checkbox is checked, show password
+
 		if(e.target.checked) {
 			password.type = "text";
 			spreadFingers();
 
-		// if checkbox is off, hide password
+
 		} else {
 			password.type = "password";
 			closeFingers();
@@ -301,7 +301,7 @@ function isMobileDevice() {
 };
 
 function initLoginForm() {
-	// some measurements for the svg's elements
+
 	svgCoords = getPosition(mySVG);
 	emailCoords = getPosition(email);
 	screenCenter = svgCoords.x + (mySVG.offsetWidth / 2);
@@ -310,42 +310,41 @@ function initLoginForm() {
 	noseCoords = {x: svgCoords.x + 97, y: svgCoords.y + 81};
 	mouthCoords = {x: svgCoords.x + 100, y: svgCoords.y + 100};
 	
-	// handle events for email input
+
 	email.addEventListener('focus', onEmailFocus);
 	email.addEventListener('blur', onEmailBlur);
 	email.addEventListener('input', onEmailInput);
 	emailLabel.addEventListener('click', onEmailLabelClick);
 	
-	// handle events for password input
+
 	password.addEventListener('focus', onPasswordFocus);
 	password.addEventListener('blur', onPasswordBlur);
 	passwordLabel.addEventListener('click', onPasswordLabelClick);
 	
-	// handle events for password checkbox
+
 	showPasswordCheck.addEventListener('change', onPasswordToggleChange);
 	showPasswordCheck.addEventListener('focus', onPasswordToggleFocus);
 	showPasswordCheck.addEventListener('blur', onPasswordToggleBlur);
 	showPasswordCheck.addEventListener('click', onPasswordToggleClick);
 	
-	// move arms to initial positions
+
 	TweenMax.set(armL, {x: -93, y: 220, rotation: 105, transformOrigin: "top left"});
 	TweenMax.set(armR, {x: -93, y: 220, rotation: -105, transformOrigin: "top right"});
 	
-	// activate blinking
+
 	startBlinking(5);
 	
-	// determine how far email input can go before scrolling occurs
-	// will be used as the furthest point avatar will look to the right
+
 	emailScrollMax = email.scrollWidth;
 	
-	// check if we're on mobile/tablet, if so then show password initially
+
 	if(isMobileDevice()) {
 		password.type = "text";
 		showPasswordCheck.checked = true;
 		TweenMax.set(twoFingers, {transformOrigin: "bottom left", rotation: 30, x: -9, y: -2, ease: Power2.easeInOut});
 	}
 	
-	// clear the console
+
 	console.clear();
 }
 
